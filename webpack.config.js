@@ -37,15 +37,15 @@ module.exports = {
       {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.obj$/,
+        use: 'file-loader'
       }
     ]
   },
   resolve: {
     extensions: ['.ts', '.js', '.json', '.scss', '.css', '.html']
-  },
-  devServer: {
-    contentBase: 'dist',
-    port: 3000
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
@@ -62,7 +62,9 @@ module.exports = {
     })
   ],
   serve: {
-    content: [assets],
+    port: 3000,
+    content: 'src/assets',
+    openPath: 'dist',
     dev: {
       logLevel: 'info',
       writeToDisk: true
